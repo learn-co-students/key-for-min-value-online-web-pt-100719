@@ -1,23 +1,22 @@
 # prereqs: iterators, hashes, conditional logic
 # Given a hash with numeric values, return the key for the smallest value
-
+require 'pry'
 def key_for_min_value(name_hash)
     if name_hash.length < 1
         return nil
     else
-        smallest = nil
+        initial_key = nil
+        initial_val = nil
         name_hash.collect do |key, value|   
-            smallest ||= value
-            if value < smallest
-                smallest = value
+            if initial_key.nil?
+                initial_key = key
+                initial_val = value
+            elsif initial_val > value
+                initial_key = key
+                initial_val = value
             end
         end
-        name_hash.collect do |key, value|
-            if value == smallest
-                return key
-            end
-        end
-
+        initial_key
     end 
 end
 
